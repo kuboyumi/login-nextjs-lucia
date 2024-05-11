@@ -1,6 +1,7 @@
 import { Lucia } from 'lucia';
 import { BunSQLiteAdapter } from '@lucia-auth/adapter-sqlite';
 import { db } from './db';
+import { GitHub } from 'arctic';
 
 const adapter = new BunSQLiteAdapter(db, {
   user: 'user',
@@ -33,3 +34,8 @@ interface DatabaseUserAttributes {
   github_id: number;
   username: string;
 }
+
+export const github = new GitHub(
+  process.env.GITHUB_CLIENT_ID!,
+  process.env.GITHUB_CLIENT_SECRET!,
+);
