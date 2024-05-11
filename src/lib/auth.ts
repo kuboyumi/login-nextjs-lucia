@@ -1,8 +1,6 @@
 import { Lucia } from 'lucia';
 import { BunSQLiteAdapter } from '@lucia-auth/adapter-sqlite';
-import { Database } from 'bun:sqlite';
-
-const db = new Database();
+import { db } from './db';
 
 const adapter = new BunSQLiteAdapter(db, {
   user: 'user',
@@ -16,10 +14,22 @@ export const lucia = new Lucia(adapter, {
       secure: process.env.BUN_ENV === 'production',
     },
   },
+  getUserAttributes: (attributes) => {
+    return {
+      github_id: attributes.github_id,
+      username: attributes.username,
+    };
+  },
 });
 
 declare module 'lucia' {
   interface Register {
     Lucia: typeof lucia;
+    DatabaseUserAttributes: DatabaseUserAttributes;
   }
+}
+
+interface DatabaseUserAttributes {
+  github_id: number;
+  username: string;
 }
