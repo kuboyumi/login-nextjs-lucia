@@ -2,7 +2,7 @@ import { Lucia } from 'lucia';
 import { BunSQLiteAdapter } from '@lucia-auth/adapter-sqlite';
 import { db } from './db';
 import { GitHub } from 'arctic';
-import { cookies } from "next/headers";
+import { cookies } from 'next/headers';
 import { cache } from 'react';
 
 import type { Session, User } from 'lucia';
@@ -45,12 +45,14 @@ export const github = new GitHub(
 );
 
 export const validateRequest = cache(
-  async (): Promise<{ user: User; session: Session } | {user: null; session: null }> => {
+  async (): Promise<
+    { user: User; session: Session } | { user: null; session: null }
+  > => {
     const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
     if (!sessionId) {
       return {
         user: null,
-        session: null
+        session: null,
       };
     }
 
@@ -74,5 +76,5 @@ export const validateRequest = cache(
       }
     } catch {}
     return result;
-  }
-)
+  },
+);
