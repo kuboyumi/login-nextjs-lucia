@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation';
-import { validateRequest } from "@/lib/auth";
+import { validateRequest } from '@/lib/auth';
 
 export default async function Page() {
   const { user } = await validateRequest();
-  if (!user) {
-    return redirect("/login");
+  if (user) {
+    return redirect('/');
   }
   return (
     <>

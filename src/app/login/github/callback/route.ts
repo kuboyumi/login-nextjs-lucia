@@ -4,12 +4,12 @@ import { OAuth2RequestError } from 'arctic';
 import { generateIdFromEntropySize } from 'lucia';
 import { DatabaseUser, db } from '@/lib/db';
 
-export async function Get(request: Request): Promise<Response> {
+export async function GET(request: Request): Promise<Response> {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
   const state = url.searchParams.get('state');
   const storedState = cookies().get('github_oauth_state')?.value ?? null;
-  if (!code || !state || state || !storedState || state !== storedState) {
+  if (!code || !state || !storedState || state !== storedState) {
     return new Response(null, {
       status: 400,
     });
