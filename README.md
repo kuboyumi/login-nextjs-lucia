@@ -2,7 +2,17 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+Create an OAuth app on GitHub  
+[GitHub Doc](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app)
+
+Create file .env
+
+```
+GITHUB_CLIENT={your_github_client_id}
+GITHUB_SECRET={your_github_secret}
+```
+
+run the development server:
 
 ```bash
 npm run dev
