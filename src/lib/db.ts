@@ -4,8 +4,9 @@ export const db = new Database('main.db');
 
 db.exec(`create table if not exists user (
   id text not null primary key,
-  github_id integer not null unique,
-  username text not null
+  github_id integer unique,
+  username text not null,
+  password text 
 )`);
 
 db.exec(`create table if not exists session (
@@ -19,4 +20,5 @@ export interface DatabaseUser {
   id: string;
   github_id: number;
   username: string;
+  password: string;
 }
