@@ -1,6 +1,6 @@
 import { Lucia } from 'lucia';
 import { BunSQLiteAdapter } from '@lucia-auth/adapter-sqlite';
-import { db } from './db';
+import { db } from '@/lib/db';
 import { GitHub } from 'arctic';
 import { cookies } from 'next/headers';
 import { cache } from 'react';

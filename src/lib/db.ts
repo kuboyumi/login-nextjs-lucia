@@ -5,7 +5,7 @@ export const db = new Database('main.db');
 db.exec(`create table if not exists user (
   id text not null primary key,
   github_id integer unique,
-  username text not null,
+  username text not null unique,
   password text 
 )`);
 
